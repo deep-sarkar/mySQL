@@ -1,0 +1,12 @@
+1. Create database
+    CREATE DATABASE keep;
+
+2. Create user
+    CREATE USER 'keepuser'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+
+3.Grant all privileges
+    GRANT ALL ON keep.* TO 'keepuser'@'%';
+
+    NOTE -> Add config to django settings
+
+
