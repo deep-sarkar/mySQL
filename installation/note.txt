@@ -1,0 +1,18 @@
+1. install sql server
+    sudo apt install mysql-server
+
+2. set password
+    sudo mysql_secure_installation
+
+    > open terminal without privileges
+        sudo mysql -u root
+
+
+3. Change password for root
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+4. Flush privileges to reload and grant new changes.
+    FLUSH PRIVILEGES;
+
+    > open terminal with new privileges
+        mysql -u root -p
