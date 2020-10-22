@@ -98,3 +98,11 @@ SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
 FROM note_note
 WHERE trash = false and user_id = v_user_id;
 END$$
+
+-- create procedure to return all trashed note
+CREATE PROCEDURE sp_get_trash_note(IN v_user_id int)
+BEGIN
+SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
+FROM note_note
+WHERE trash = true and user_id = v_user_id;
+END$$
