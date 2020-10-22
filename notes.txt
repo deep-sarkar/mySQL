@@ -1,2 +1,8 @@
 1. Run .sql file from terminal
     psql -u user_name -p database_name < paht_to_file
+
+2. Export table into csv
+    SELECT * 
+    FROM note_note INTO OUTFILE "/var/lib/mysql-files//note.csv"
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n';
