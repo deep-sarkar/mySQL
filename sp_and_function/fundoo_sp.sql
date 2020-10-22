@@ -116,3 +116,16 @@ SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
 FROM note_note
 WHERE trash = false and archive = true and user_id = v_user_id;
 END$$
+
+
+-- create procedure to get all collaborated note
+CREATE PROCEDURE sp_get_collaborated_note(IN v_user_id integer)
+BEGIN
+SELECT note_note.*, fn_get_labels(note_note.id) as labels ,fn_get_collaborators(note_note.id) as collaborators
+FROM note_note 
+INNER JOIN note_usermap 
+ON note_note.id = note_usermap.note_id 
+INNER JOIN auth_user 
+ON auth_user.id = note_usermap.user_id
+WHERE note_note.trash = false and note_note.archive = false and auth_user.id = v_user_id;
+END$$
