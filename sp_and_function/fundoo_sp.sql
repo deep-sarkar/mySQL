@@ -85,7 +85,16 @@ CLOSE get_all_label_cursor;
 SELECT concat('[', concat(v_label_list, ']'));
 END$$
 
-    
 
 
 
+
+
+
+-- create procedure to return all note with collaborators and label
+CREATE PROCEDURE sp_get_all_note(IN v_user_id int)
+BEGIN
+SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
+FROM note_note
+WHERE trash = false and user_id = v_user_id;
+END$$
