@@ -138,3 +138,11 @@ SELECT exists(SELECT *
                 FROM note_note 
                 WHERE trash = true AND id = v_note_id and user_id = v_user_id) as exist;
 END$$
+
+
+-- create procedure to return all note with collaborators and label for all user
+CREATE PROCEDURE sp_get_all_users_note()
+BEGIN
+SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
+FROM note_note;
+END$$
