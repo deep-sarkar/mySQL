@@ -129,3 +129,12 @@ INNER JOIN auth_user
 ON auth_user.id = note_usermap.user_id
 WHERE note_note.trash = false and note_note.archive = false and auth_user.id = v_user_id;
 END$$
+
+-- CREATE procedure to check requested note is trashed or not
+DELIMITER $$
+CREATE PROCEDURE sp_to_check_trash_exists(IN v_note_id int, IN v_user_id int)
+BEGIN
+SELECT exists(SELECT * 
+                FROM note_note 
+                WHERE trash = true AND id = v_note_id and user_id = v_user_id) as exist;
+END$$
