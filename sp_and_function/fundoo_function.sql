@@ -22,7 +22,7 @@ getLabels: LOOP
     set v_label_list = concat(v_label_list , concat(v_label_name, ',' ));
 END LOOP getLabels;
 CLOSE get_all_label_cursor;
-return concat('[', concat(v_label_list, ']'));
+return v_label_list;
 END$$
 
 
@@ -52,5 +52,5 @@ getCollab: LOOP
     set v_collaborators = concat(v_collaborators, concat(v_username, ','));
 END LOOP getCollab;
 CLOSE get_all_collab_cursor;
-return concat('[', concat(v_collaborators,']'));
+return v_collaborators;
 END$$
