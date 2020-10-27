@@ -96,7 +96,8 @@ CREATE PROCEDURE sp_get_all_note(IN v_user_id int)
 BEGIN
 SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
 FROM note_note
-WHERE trash = false and archive = false and user_id = v_user_id;
+WHERE trash = false and archive = false and user_id = v_user_id
+ORDER BY id desc;
 END$$
 
 -- create procedure to return all trashed note
@@ -104,7 +105,8 @@ CREATE PROCEDURE sp_get_trash_note(IN v_user_id int)
 BEGIN
 SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
 FROM note_note
-WHERE trash = true and user_id = v_user_id;
+WHERE trash = true and user_id = v_user_id
+ORDER BY id desc;
 END$$
 
 
@@ -114,7 +116,8 @@ CREATE PROCEDURE sp_get_archive_note(IN v_user_id int)
 BEGIN
 SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
 FROM note_note
-WHERE trash = false and archive = true and user_id = v_user_id;
+WHERE trash = false and archive = true and user_id = v_user_id
+ORDER BY id desc;
 END$$
 
 
@@ -127,7 +130,8 @@ INNER JOIN note_usermap
 ON note_note.id = note_usermap.note_id 
 INNER JOIN auth_user 
 ON auth_user.id = note_usermap.user_id
-WHERE note_note.trash = false and note_note.archive = false and auth_user.id = v_user_id;
+WHERE note_note.trash = false and note_note.archive = false and auth_user.id = v_user_id
+ORDER BY note_note.id desc;
 END$$
 
 -- CREATE procedure to check requested note is trashed or not
@@ -144,5 +148,6 @@ END$$
 CREATE PROCEDURE sp_get_all_users_note()
 BEGIN
 SELECT *, fn_get_labels(id) as labels, fn_get_collaborators(id) as collaborators
-FROM note_note;
+FROM note_note
+ORDER BY id desc;
 END$$
