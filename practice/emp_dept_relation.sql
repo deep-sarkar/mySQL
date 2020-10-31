@@ -14,3 +14,17 @@ CREATE TABLE employee(
 );
 
 --  mysql -u deep -p practice < /home/deep/Documents/mysql/practice/emp_dept_relation.sql (create table in db)
+
+
+CREATE TABLE note(
+    id integer(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    title varchar(200) NULL,
+    note varchar(2000) NULL,
+    image varchar(200) NULL,
+    reminder timestamp NULL,
+    archive tinyint(1) NULL,
+    trash tinyint(1) NULL,
+    pin tinyint(1) NULL,
+    color varchar(7) NULL DEFAULT('#ffffff'),
+    user_id integer(4) NOT NULL);
+    
