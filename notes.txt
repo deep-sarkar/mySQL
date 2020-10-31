@@ -5,4 +5,12 @@
     SELECT * 
     FROM note_note INTO OUTFILE "/var/lib/mysql-files//note.csv"
     FIELDS TERMINATED BY ','
+    {% comment %} ENCLOSED BY '"'  {% endcomment %}
+    LINES TERMINATED BY '\n';
+
+3. LOAD csv into table
+    LOAD DATA INFILE '/var/lib/mysql-files/note.csv' 
+    INTO TABLE note FIELDS 
+    TERMINATED BY ',' 
+    {% comment %} ENCLOSED BY '"'  {% endcomment %}
     LINES TERMINATED BY '\n';
